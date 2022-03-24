@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>易广金出入凭证生成器</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link rel="stylesheet" href="https://ygj.gduf.edu.cn/leavehelper_20220228/css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://ygj.gduf.edu.cn/leavehelper_20220228/css/mui.picker.min.css">
+    <script src="https://ygj.gduf.edu.cn/leavehelper_20220228/js/mui.min.js"></script>
+    <script src="https://ygj.gduf.edu.cn/leavehelper_20220228/js/mui.picker.min.js"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/time.js"></script>
+    <script type="text/javascript" src="js/qrcode.js"></script>
+
+    <style type="text/css">
+        .btn-twinkle {
+            color: #fff;
+            border: none;
+            animation: twinkle 1s alternate infinite;
+        }
+
+        @keyframes twinkle {
+            from {
+                background: #16e2eb;
+            }
+            to {
+                background: #3b6e99;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="aui-flexView">
+        <header class="aui-navBar aui-navBar-fixed">
+            <div class="aui-center">
+                <span class="aui-center-title">易广金出入凭证生成器</span>
+            </div>
+        </header>
+        <section class="aui-scrollView">
+            <div class="aui-code-box" id="content">
+                <form action="">
+                    <p class="aui-code-line">
+                        <input type="text" class="aui-code-line-input" name="search" value="" id="studentName" autocomplete="off" placeholder="请输入姓名：宁昊威" />
+                    </p>
+                    <p class="aui-code-line">
+                        <input type="text" class="aui-code-line-input" name="search" value="" id="studentId" autocomplete="off" placeholder="请输入学号：201571201" />
+                    </p>
+                    <p class="aui-code-line">
+                        <input type="text" class="aui-code-line-input" name="search" value="" id="sex" autocomplete="off" placeholder="请输入性别：男" />
+                    </p>
+                    <div class="aui-che-item">
+                        <div class="aui-cell-che">
+                            <input type="checkbox" class="aui-well-check" name="checkbox1" id="checkbox1" checked="checked">
+                            <i class="aui-well-icon-checked"></i>
+                        </div>我已经阅读并同意 <a href="disclaimer.html">《免责声明》</a>
+                    </div>
+                    <div class="aui-code-btn">
+                        <button class="btn-twinkle" type="button" onClick="qrcode()" id="bt1">生成二维码使用易班扫码打开(推荐)</button>
+                    </div>
+                    <div class="aui-code-btn">
+                        <button type="button" onClick="next()" id="bt1">直接进入页面</button>
+                    </div>
+                </form>
+            </div>
+            <div id="result" class="aui-code-box" style="display: none;">
+                <div id="qrcodeTable" align="center"></div>
+                <div class="aui-code-btn">
+                    <button type="button" onClick="back()">返回</button>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <script type="text/javascript" charset="utf-8">
+        (function(mui) {
+           // alert("本工具完全免费！如果您是通过购买的途径获得，说明您被骗了！");
+            mui.init();
+        })(mui);
+
+        function geturl() {
+            var name = document.getElementById('studentName').value.replace(/(^\s*)|(\s*$)/g, '');
+            if (name.length == 0) {
+                name = "李柏坚"
+            }
+            var id = document.getElementById('studentId').value.replace(/(^\s*)|(\s*$)/g, '');
+            if (id.length == 0) {
+                id = "21281A106"
+            }
+            var sex = document.getElementById('sex').value.replace(/(^\s*)|(\s*$)/g, '');
+            if (sex.length == 0) {
+                sex = "男"
+            }
+            var checkstatus = document.getElementById('checkbox1').checked;
+            if (checkstatus == true) {
+                url = "https://passport2077.github.io/gduf_io/student-default.html?studentName=" + name + "&studentId=" + id + "&studentSex=" + sex;
+            } else {
+                alert("请先阅读并同意免责说明书！");
+            }
+            return url
+        };
+
+        function qrcode() {
+            var qrcode = new QRCode('qrcodeTable', {
+                text: encodeURI(geturl()),
+                width: 512,
+                height: 512
+            });
+            document.getElementById('content').style.display = 'none';
+            document.getElementById('result').style.display = '';
+
+        };
+
+        function back() {
+            document.getElementById('content').style.display = '';
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('qrcodeTable').innerHTML = '';
+        };
+
+    function next() {
+            window.location.href = geturl().replace("https://passport2077.github.io/gduf_io", "");
+        }
+    </script>
+</body>
+
+</html>

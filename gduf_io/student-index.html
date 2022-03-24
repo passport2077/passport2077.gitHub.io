@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>出校申报</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="https://ygj.gduf.edu.cn/leavehelper_20220228/css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://ygj.gduf.edu.cn/leavehelper_20220228/css/app.css" />
+    <style>
+        .footerBtnBox {
+            padding: 10px;
+            height: 54px;
+        }
+
+        .mui-card-footer.footerBtnBox .mui-card-link {
+            text-align: center;
+            background: #3a96fa;
+            width: 49%;
+            display: block;
+            color: #fff;
+            border-radius: 5px;
+            line-height: 34px;
+            height: 34px;
+            transition: all 0.3s;
+        }
+
+        .mui-card-footer.footerBtnBox .mui-card-link:last-child {
+            background: #EA5628
+        }
+
+        .mui-card-footer.footerBtnBox .mui-card-link:last-child:active {
+            background: #CF2D28
+        }
+
+        .mui-card-footer.footerBtnBox .mui-card-link:active {
+            background: #007AFF;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mui-content" id="outSchoolBox" style="padding-bottom: 45px;">
+    </div>
+    <nav class="footerNav">
+        <button class="whiteBtn">
+            <span class="mui-icon mui-icon-more"></span>
+            <span>申请记录</span>
+        </button>
+        <button>
+            <span class="mui-icon mui-icon-compose"></span>
+            <span>出校申报</span>
+        </button>
+    </nav>
+    <script src="https://ygj.gduf.edu.cn/leavehelper_20220228/js/mui.min.js"></script>
+    <script src="https://ygj.gduf.edu.cn/leavehelper_20220228/js/jquery.min.js"></script>
+    <script src="https://ygj.gduf.edu.cn/leavehelper_20220228/js/common.js"></script>
+    <script type="text/javascript" src="js/util.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        (function(mui) {
+            //mui.toast("本工具完全免费！如果您是通过购买的途径获得，说明您被骗了！");
+            mui.init();
+            getMyOutSchool();
+        })(mui);
+
+        function getMyOutSchool(result) {
+            var randomNum = '';
+            for (var i = 0; i < 5; i++) {
+                randomNum += Math.floor(Math.random() * 10);
+            }
+            var html = '';
+            for (var i = 0; i < 2; i++) {
+                html += '<div class="mui-card">';
+                html += '<div class="mui-card-header">申请编号：' + new Date().Format("yyyyMMdd" + randomNum) + '</div>';
+                html += '<div class="mui-card-content">';
+                html += '<div class="mui-card-content-inner">';
+                html += '<div>姓<span style="visibility: hidden;">空空</span>名：' + getParam()["studentName"] + '</div>';
+                html += '<div>学<span style="visibility: hidden;">空空</span>号：' + getParam()["studentId"] + '</div>';
+                html += '<div>开始时间：' + new Date().Format("yyyy-MM-dd") + '</div>';
+                html += '<div>结束时间：' + new Date(new Date().getTime() + 86400).Format("yyyy-MM-dd") + '</div>';
+                html += '<div>外出类型：就医</div>';
+                html += '<div>涉及天数：1天</div>';
+                html += '<div>出入次数：共一次出入</div>';
+                html += '<div>状<span style="visibility: hidden;">空空</span>态：' + formatStatus() + '</div>';
+                html += '<div>提交时间：' + new Date(new Date().getTime() - 14400000).Format("yyyy-MM-dd hh:mm:ss") + '</div>';
+                html += '</div>';
+                html += '</div>';
+                html += '<div class="mui-card-footer footerBtnBox">';
+                html += '<a class="mui-card-link" href="student-detail.html' + location.search + '"' + '>详情</a>';
+                html += '<a class="mui-card-link" style="background:#eee;color:#999">取消</a>';
+                html += '</div>';
+                html += '</div>';
+            }
+            $("#outSchoolBox").html(html);
+        }
+    </script>
+</body>
+
+</html>
