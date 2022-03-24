@@ -46,10 +46,10 @@
             <div class="aui-code-box" id="content">
                 <form action="">
                     <p class="aui-code-line">
-                        <input type="text" class="aui-code-line-input" name="search" value="" id="studentName" autocomplete="off" placeholder="请输入姓名：宁昊威" />
+                        <input type="text" class="aui-code-line-input" name="search" value="" id="studentName" autocomplete="off" placeholder="请输入姓名：李柏坚" />
                     </p>
                     <p class="aui-code-line">
-                        <input type="text" class="aui-code-line-input" name="search" value="" id="studentId" autocomplete="off" placeholder="请输入学号：201571201" />
+                        <input type="text" class="aui-code-line-input" name="search" value="" id="studentId" autocomplete="off" placeholder="请输入学号：21281A106" />
                     </p>
                     <p class="aui-code-line">
                         <input type="text" class="aui-code-line-input" name="search" value="" id="sex" autocomplete="off" placeholder="请输入性别：男" />
@@ -98,7 +98,7 @@
             }
             var checkstatus = document.getElementById('checkbox1').checked;
             if (checkstatus == true) {
-                url = "https://passport2077.github.io/gduf_io/student-default.html?studentName=" + name + "&studentId=" + id + "&studentSex=" + sex;
+                url = "https://passport2077.github.io/student-default.html?studentName=" + name + "&studentId=" + id + "&studentSex=" + sex;
             } else {
                 alert("请先阅读并同意免责说明书！");
             }
@@ -123,7 +123,7 @@
         };
 
     function next() {
-            window.location.href = geturl().replace("https://passport2077.github.io/gduf_io", "");
+            window.location.href = geturl().replace("https://passport2077.github.io", "");
         }
     </script>
 </body>
